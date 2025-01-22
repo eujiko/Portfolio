@@ -1,0 +1,61 @@
+.app {
+  font-family: 'Montserrat', sans-serif;
+  background-color: #f0f0f0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dark-mode {
+  background-color: #12161a;
+}
+
+.dark-mode .app {
+  color: #fff;
+}
+
+.light-mode .app {
+  color: #4b4b4b;
+}
+
+.card-content {
+  color: inherit; /* Ensure text color follows theme */
+}
+
+.card-content a {
+  color: inherit; /* Ensure link color follows theme */
+  text-decoration: underline; /* Optional: maintain link style */
+}
+
+.nav-button {
+  padding: 8px 16px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+/* Dark Mode Navigation Buttons */
+.dark-mode .nav-button {
+  color: #CCCCCC;
+}
+
+.dark-mode .nav-button:hover {
+ color: rgb(251, 196, 157);
+}
+
+/* Light Mode Navigation Buttons */
+.light-mode .nav-button {
+  color: rgb(147, 135, 124);
+}
+
+.light-mode .nav-button:hover {
+  color: rgb(251, 196, 157);
+}
+
+@media (max-width: 768px) {
+  .app {
+    padding: 10px;
+  }
+}
