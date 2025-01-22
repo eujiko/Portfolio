@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import { BrowserRouter } from "react-router-dom";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
-import Banner from "./components/Banner/Banner"; 
+import Banner from "./components/Banner/Banner";
 import AppRoutes from "./Routes/AppRoutes";
 import { Button, Box } from "@mui/material";
 import { Link } from "react-router-dom";
 import "./assets/App.css";
-import Icon from "./assets/Images/jca-logo.svg"
+import Icon from "./assets/Images/jca-logo.svg";
 
 function App() {
   const [darkMode, setDarkMode] = useState(true);
@@ -26,15 +26,15 @@ function App() {
             opacity: 0.08, // Subtle watermark effect
             pointerEvents: "none", // Prevent interaction
             zIndex: 1, // Behind all other elements
-            width: "200px", 
-            height: "200px", 
+            width: "200px",
+            height: "200px",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
           }}
         >
           <img
-            src={Icon} 
+            src={Icon}
             alt="JCA Logo Watermark"
             style={{
               width: "100%", // Scales with the div
@@ -103,8 +103,8 @@ function App() {
           <Button
             className="nav-button"
             component="a"
-            href="/my-cv.pdf"
-            download="Jeanson_Acal_CV.pdf"
+            href="/JeansonAcal-CV.pdf" // Directly references the file in the public folder
+            download="Jeanson-Acal_CV.pdf" // Sets the name for the downloaded file
             variant="text"
             sx={{
               fontSize: "14px",
