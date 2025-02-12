@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { BrowserRouter } from "react-router-dom";
+import { HashRouter as Router } from "react-router-dom";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import Banner from "./components/Banner/Banner";
@@ -15,17 +15,17 @@ function App() {
   const toggleMode = () => setDarkMode(!darkMode);
 
   return (
-    <BrowserRouter>
+    <Router>
       <div className={`app ${darkMode ? "dark-mode" : "light-mode"}`}>
         <div
           style={{
             position: "fixed",
-            bottom: -40, // Anchored to the bottom
-            right: -50, // Anchored to the left
-            transform: "translate(-20%, 20%)", // Slight offset for aesthetics
-            opacity: 0.08, // Subtle watermark effect
-            pointerEvents: "none", // Prevent interaction
-            zIndex: 1, // Behind all other elements
+            bottom: -40,
+            right: -50,
+            transform: "translate(-20%, 20%)",
+            opacity: 0.08,
+            pointerEvents: "none",
+            zIndex: 1,
             width: "200px",
             height: "200px",
             display: "flex",
@@ -37,82 +37,38 @@ function App() {
             src={Icon}
             alt="JCA Logo Watermark"
             style={{
-              width: "100%", // Scales with the div
-              height: "100%", // Scales with the div
-              objectFit: "contain", // Maintains aspect ratio
+              width: "100%",
+              height: "100%",
+              objectFit: "contain",
             }}
           />
         </div>
         <Header toggleMode={toggleMode} darkMode={darkMode} />
-        <Banner /> {/* Your banner */}
+        <Banner />
         {/* Navigation buttons below the banner */}
         <Box
           sx={{
             display: "flex",
-            justifyContent: "space-between", // Spreads buttons evenly
-            alignItems: "center", // Centers buttons vertically
-            gap: "8px", // Small gap between buttons
+            justifyContent: "space-between",
+            alignItems: "center",
+            gap: "8px",
             padding: "16px",
             backgroundColor: "none",
-            flexWrap: "nowrap", // Prevents wrapping
-            overflowX: "auto", // Adds horizontal scroll if needed on very small screens
+            flexWrap: "nowrap",
+            overflowX: "auto",
           }}
         >
-          <Button
-            className="nav-button"
-            component={Link}
-            to="/"
-            variant="text"
-            sx={{
-              fontSize: "14px", // Uniform size
-              flex: "1 1 auto", // Buttons adjust width to fit
-              textAlign: "center",
-              whiteSpace: "nowrap", // Prevents text wrapping
-            }}
-          >
+          <Button className="nav-button" component={Link} to="/" variant="text" sx={{ fontSize: "14px", flex: "1 1 auto", textAlign: "center", whiteSpace: "nowrap" }}>
             Feeds
           </Button>
-          <Button
-            className="nav-button"
-            component={Link}
-            to="/about-me"
-            variant="text"
-            sx={{
-              fontSize: "14px",
-              flex: "1 1 auto",
-              textAlign: "center",
-              whiteSpace: "nowrap",
-            }}
-          >
+          <Button className="nav-button" component={Link} to="/about-me" variant="text" sx={{ fontSize: "14px", flex: "1 1 auto", textAlign: "center", whiteSpace: "nowrap" }}>
             About Me
           </Button>
-          <Button
-            className="nav-button"
-            component={Link}
-            to="/contacts"
-            variant="text"
-            sx={{
-              fontSize: "14px",
-              flex: "1 1 auto",
-              textAlign: "center",
-              whiteSpace: "nowrap",
-            }}
-          >
+          <Button className="nav-button" component={Link} to="/contacts" variant="text" sx={{ fontSize: "14px", flex: "1 1 auto", textAlign: "center", whiteSpace: "nowrap" }}>
             Contacts
           </Button>
-          <Button
-            className="nav-button"
-            component={Link}
-            to="/my-work" // Ensure this route exists in your AppRoutes
-            variant="text"
-            sx={{
-              fontSize: "14px",
-              flex: "1 1 auto",
-              textAlign: "center",
-              whiteSpace: "nowrap",
-            }}
-          >
-           SOME OF MY WORKS
+          <Button className="nav-button" component={Link} to="/my-work" variant="text" sx={{ fontSize: "14px", flex: "1 1 auto", textAlign: "center", whiteSpace: "nowrap" }}>
+            SOME OF MY WORKS
           </Button>
         </Box>
         {/* Main content area */}
@@ -121,7 +77,7 @@ function App() {
         </main>
         <Footer />
       </div>
-    </BrowserRouter>
+    </Router>
   );
 }
 

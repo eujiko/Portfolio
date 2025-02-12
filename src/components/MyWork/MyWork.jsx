@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Masonry from "@mui/lab/Masonry";
-import { Button, Box, Modal, TextField } from "@mui/material";
+import { Button, Box, Modal } from "@mui/material";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 
@@ -49,18 +49,16 @@ const works = [
   { id: 17, category: "Photography", src: photo17 },
   { id: 18, category: "Photography", src: photo18 },
   { id: 19, category: "Illustrator", src: photo19 },
-  { id: 20, category: "Illustrator", src: photo20},
+  { id: 20, category: "Illustrator", src: photo20 },
   { id: 21, category: "Photography", src: photo21 },
   { id: 22, category: "Photography", src: photo22 },
   { id: 23, category: "Photography", src: photo23 },
-
 ];
 
 const categories = ["All", "Photography", "Illustrator", "InDesign"];
 
 const MyWork = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
-  const [searchQuery, setSearchQuery] = useState("");
   const [open, setOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
 
@@ -74,75 +72,48 @@ const MyWork = () => {
     setSelectedImage(null);
   };
 
-  const handleReset = () => {
-    setSearchQuery("");
-    setSelectedCategory("All");
-  };
-
-  const handleSearchChange = (event) => {
-    setSearchQuery(event.target.value);
-  };
-
-  const handleCategoryChange = (category) => {
-    setSelectedCategory(category);
-  };
-
-  const filteredWorks = works.filter(
-    (work) =>
-      (selectedCategory === "All" || work.category === selectedCategory) &&
-      work.category.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  const filteredWorks =
+    selectedCategory === "All"
+      ? works
+      : works.filter((work) => work.category === selectedCategory);
 
   return (
     <Box sx={{ width: "100%", padding: 2 }}>
-      {/* Navbar with Search and Reset */}
-      {/* <Box
+      {/* Category Filter */}
+      <Box
         sx={{
           display: "flex",
-          alignItems: "center",
           justifyContent: "center",
-          gap: 2,
-          marginBottom: 3,
+          alignItems: "center",
+          gap: { xs: 0.5, sm: 1.5 },
+          mb: 50,
+          flexWrap: "nowrap",
+          overflowX: "auto",
+          maxWidth: { xs: "100%", sm: "fit-content" },
+          margin: "0 auto",
+          paddingX: { xs: 1, sm: 2 },
+          paddingBottom: "5px",
         }}
       >
-        <Button onClick={handleReset} sx={{ minWidth: "40px" }}>
-          <FaImages size={30} />
-        </Button>
-        <TextField
-          type="text"
-          placeholder="Search Photography, Illustrator, InDesign..."
-          value={searchQuery}
-          onChange={handleSearchChange}
-          variant="outlined"
-          size="small"
-        />
-      </Box> */}
-
-      {/* Category Filter */}
-      <Box sx={{ display: "flex", justifyContent: "center", gap: 2, mb: 3 }}>
         {categories.map((category) => (
           <Button
             key={category}
             variant={selectedCategory === category ? "contained" : "outlined"}
-            onClick={() => handleCategoryChange(category)}
+            onClick={() => setSelectedCategory(category)}
+            sx={{
+              whiteSpace: "nowrap",
+              fontSize: { xs: "0.7rem", sm: "0.875rem" },
+              minWidth: { xs: "65px", sm: "90px" },
+              paddingX: { xs: 0.5, sm: 2 },
+              paddingY: { xs: 0.3, sm: 0.8 },
+            }}
           >
             {category}
           </Button>
         ))}
       </Box>
-
-      {/* Engaging Section */}
-      {/* <Box textAlign="center" marginBottom={4}>
-        <h2>Explore My Creative Work</h2>
-        <p>A curated gallery featuring my photography, Illustrator designs, and InDesign layouts.</p>
-      </Box> */}
-
-      {/* Masonry Grid with seamless margin */}
-      <Masonry
-        columns={{ xs: 1, sm: 2, md: 3 }}
-        spacing={1.5}
-        sx={{ marginLeft: "auto", marginRight: "auto", maxWidth: "90%" }}
-      >
+      {/* Masonry Grid */}
+      <Masonry columns={{ xs: 1, sm: 2, md: 3 }} spacing={1.5} sx={{ mt: 4 }}>
         {filteredWorks.map((work) => (
           <Box key={work.id} sx={{ cursor: "pointer", overflow: "hidden" }}>
             <LazyLoadImage
@@ -163,36 +134,38 @@ const MyWork = () => {
 
       {/* Modal for Full View */}
       <Modal open={open} onClose={handleClose}>
-  <Box
-    sx={{
-      position: "absolute",
-      top: "50%",
-      left: "50%",
-      transform: "translate(-50%, -50%)",
-      bgcolor: "background.paper",
-      boxShadow: 24,
-      p: 2,
-      borderRadius: "8px",
-      maxWidth: "80vw", // Make the modal width responsive
-      maxHeight: "80vh", // Prevents it from being too large
-      overflow: "auto", // Allows scrolling if needed
-    }}
-  >
-    {selectedImage && (
-      <img
-        src={selectedImage}
-        alt="Selected Work"
-        style={{
-          width: "100%",
-          maxHeight: "70vh", // Ensures it doesn't exceed viewport height
-          objectFit: "contain", // Keeps aspect ratio
-          borderRadius: "8px",
-        }}
-      />
-    )}
-  </Box>
-</Modal>
-
+        <Box
+          sx={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            bgcolor: "background.paper",
+            boxShadow: 24,
+            p: 2,
+            borderRadius: "8px",
+            width: { xs: "90vw", sm: "70vw", md: "60vw" },
+            maxHeight: "80vh",
+            overflow: "auto",
+            display: "flex",
+            justifyContent: "center",
+            border: "5px solid rgba(0, 0, 0, 0.1)",
+          }}
+        >
+          {selectedImage && (
+            <img
+              src={selectedImage}
+              alt="Selected Work"
+              style={{
+                width: "100%",
+                maxHeight: "75vh",
+                objectFit: "contain",
+                borderRadius: "8px",
+              }}
+            />
+          )}
+        </Box>
+      </Modal>
     </Box>
   );
 };
