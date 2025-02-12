@@ -78,7 +78,8 @@ const MyWork = () => {
       : works.filter((work) => work.category === selectedCategory);
 
   return (
-    <Box sx={{ width: "100%", padding: 2 }}>
+    <Box sx={{ width: "100%", paddingX: { xs: 2, sm: 0 } }}>
+
       {/* Category Filter */}
       <Box
         sx={{
@@ -86,11 +87,10 @@ const MyWork = () => {
           justifyContent: "center",
           alignItems: "center",
           gap: { xs: 0.5, sm: 1.5 },
-          mb: 50,
+          mb: 2,
           flexWrap: "nowrap",
           overflowX: "auto",
-          maxWidth: { xs: "100%", sm: "fit-content" },
-          margin: "0 auto",
+          maxWidth: "100%",
           paddingX: { xs: 1, sm: 2 },
           paddingBottom: "5px",
         }}
@@ -113,9 +113,14 @@ const MyWork = () => {
         ))}
       </Box>
       {/* Masonry Grid */}
-      <Masonry columns={{ xs: 1, sm: 2, md: 3 }} spacing={1.5} sx={{ mt: 4 }}>
+      <Masonry columns={{ xs: 1, sm: 2, md: 3 }} spacing={{ xs: 1, sm: 1.5 }}>
         {filteredWorks.map((work) => (
-          <Box key={work.id} sx={{ cursor: "pointer", overflow: "hidden" }}>
+          <Box key={work.id} sx={{ 
+            cursor: "pointer", 
+            overflow: "hidden", 
+            maxWidth: { xs: "93%", sm: "100%" }, // Reduce card width in mobile
+            margin: "auto" // Center it properly
+           }}>
             <LazyLoadImage
               src={work.src}
               alt={work.category}
@@ -124,14 +129,12 @@ const MyWork = () => {
                 width: "100%",
                 borderRadius: "8px",
                 objectFit: "cover",
-                transition: "transform 0.3s ease-in-out",
               }}
               onClick={() => handleOpen(work.src)}
             />
           </Box>
         ))}
       </Masonry>
-
       {/* Modal for Full View */}
       <Modal open={open} onClose={handleClose}>
         <Box
@@ -145,11 +148,10 @@ const MyWork = () => {
             p: 2,
             borderRadius: "8px",
             width: { xs: "90vw", sm: "70vw", md: "60vw" },
-            maxHeight: "80vh",
+            maxHeight: "85vh",
             overflow: "auto",
             display: "flex",
             justifyContent: "center",
-            border: "5px solid rgba(0, 0, 0, 0.1)",
           }}
         >
           {selectedImage && (
@@ -158,7 +160,7 @@ const MyWork = () => {
               alt="Selected Work"
               style={{
                 width: "100%",
-                maxHeight: "75vh",
+                maxHeight: "80vh",
                 objectFit: "contain",
                 borderRadius: "8px",
               }}
