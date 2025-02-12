@@ -102,9 +102,8 @@ function App() {
           </Button>
           <Button
             className="nav-button"
-            component="a"
-            href="/JeansonAcal-CV.pdf" // Directly references the file in the public folder
-            download="Jeanson-Acal_CV.pdf" // Sets the name for the downloaded file
+            component={Link}
+            to="/my-work" // Ensure this route exists in your AppRoutes
             variant="text"
             sx={{
               fontSize: "14px",
@@ -113,7 +112,7 @@ function App() {
               whiteSpace: "nowrap",
             }}
           >
-            Download CV
+           SOME OF MY WORKS
           </Button>
         </Box>
         {/* Main content area */}
