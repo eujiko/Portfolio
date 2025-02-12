@@ -68,7 +68,7 @@ function App() {
             Contacts
           </Button>
           <Button className="nav-button" component={Link} to="/my-work" variant="text" sx={{ fontSize: "14px", flex: "1 1 auto", textAlign: "center", whiteSpace: "nowrap" }}>
-            SOME OF MY WORKS
+            MY WORKS
           </Button>
         </Box>
         {/* Main content area */}
